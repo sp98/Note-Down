@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">"Note Down "</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_activity2">ND_NoteDetailScreen</string>
+    <string name="title_activity_searchable">ND_Search</string>
+    <string name="send_to">Share this Note with...</string>
+
+</resources>
