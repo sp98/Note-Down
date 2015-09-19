@@ -233,7 +233,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
                 showTheDialog(allDeleteMode);
                 return true;
             case R.id.action_sort:
-                ND_DialogFragment settingsFrag = new ND_DialogFragment();
+                ND_SettingsDialogBox settingsFrag = new ND_SettingsDialogBox();
                 FragmentManager manager = getFragmentManager();
                 settingsFrag.show(manager,"Settings Window");
                 return true;
