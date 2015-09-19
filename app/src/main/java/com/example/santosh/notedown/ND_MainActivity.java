@@ -68,7 +68,6 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
 
         setTitle("Note Down");  // set title of the Activity
-
         //Initialization
         c = getApplicationContext();
         customlistview = (ListView) findViewById(R.id.mylistView);
@@ -82,13 +81,17 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
 
 
-        //Takes the user to detailScreen activity when a row in the List view is clicked. Data is also transfered in Bundle
+        //Handling click on ListView: Takes the user to detailScreen activity when a row in the List view is clicked. Data is also transferred in Bundle
         customlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {   // here position is the row number on which the user has clicked.
                 // Message.message(getApplicationContext(), "Item at" +titles[position]+ "was clicked");
                 String titleText = title.get(position);
-                String descText = dataBaseApdater.retriveSingleText(titleText);
+
+               // ND_ToastMessage.message(getApplicationContext(),description.get(position).toString());
+                //String descText = dataBaseApdater.retriveSingleText(titleText);
+
+                String descText = description.get(position).toString();
 
                 Intent i = new Intent(getApplicationContext(), ND_NoteDetailScreen.class);
                 i.putExtra("SAVEDTITLE", titleText);
@@ -96,6 +99,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
                 startActivity(i);
             }
         });
+
 
 
 

@@ -68,7 +68,7 @@ public class ND_NoteDetailScreen extends Activity {
         });
 
 
-
+       // retriving the title and descrption form the bundle objec that was sent via the intent from Main Activity
         Intent i = getIntent();
         Bundle bdl=getIntent().getExtras();
 

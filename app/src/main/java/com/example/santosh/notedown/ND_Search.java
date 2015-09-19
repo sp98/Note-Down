@@ -29,6 +29,8 @@ public class ND_Search extends ActionBarActivity {
     List<String> formatedTime = new ArrayList<>();
     ND_MainActivity mainActivity =null;
 
+    int desc_position= -1;
+
     ListView mylistview = null;
 
 
@@ -39,6 +41,7 @@ public class ND_Search extends ActionBarActivity {
 
         // Setting title of this activity in the Action Bar.
         setTitle("Searched Notes");
+
         mylistview= (ListView) findViewById(R.id.mySearchlistView);
         mainActivity = new ND_MainActivity();
         adapter3 = new ND_DataBaseAdapter(this);
@@ -63,8 +66,9 @@ public class ND_Search extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String title = titles.get(position);
-                String desctext = adapter3.retriveSingleText(title);
-                Add(title, desctext);
+
+                String descText = adapter3.retriveSingleText(title);
+                Add(title, descText);
             }
         });
     }
@@ -75,7 +79,7 @@ public class ND_Search extends ActionBarActivity {
         handleIntent(intent);
     }
 
-    // Add method to navigate to the detail view of the searched Note.
+    // Add method to navigate to the detail view of the searched Notes
     public void Add(String title, String destext) {
         Intent i = new Intent(this, ND_NoteDetailScreen.class);
         i.putExtra("SAVEDTITLE", title);

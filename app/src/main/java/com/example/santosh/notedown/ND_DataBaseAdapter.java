@@ -242,6 +242,7 @@ public class ND_DataBaseAdapter {
     }
 
 
+    // Retrive the single description of the Note when title is passed on as a parameter.
     public String retriveSingleText(String title){
 
         SQLiteDatabase db2 = helper.getWritableDatabase();
