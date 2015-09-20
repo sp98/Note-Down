@@ -10,9 +10,9 @@
         android:title="delete_items"
         android:icon="@drawable/ic_action_remove" />
 
-    <item android:id="@+id/newReminder"
+    <!--<item android:id="@+id/newReminder"
         android:title="create_Reminder"
-        android:icon="@drawable/ic_action_event" />
+        android:icon="@drawable/ic_action_event" /> -->
 
 
 

@@ -13,11 +13,13 @@ import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.ActionMode;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -350,4 +352,37 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
 
 
+    // Back button press behavior on the main activity.@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if(backButtonCount == 2)
+            {
+                exitActivity();
+
+            }
+
+            else
+            {
+                ND_ToastMessage.message(getApplicationContext(), "Press Again to Exit.");
+                backButtonCount= 2;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        backButtonCount = 1;
+                    }
+                }, 3 * 1000);
+                return true;
+            }
+        }
+        return true;
+
+    }
+
+    public void exitActivity(){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
 }

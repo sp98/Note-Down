@@ -8,12 +8,12 @@
 
 package com.example.santosh.notedown;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -28,7 +28,7 @@ import android.widget.TextView;
 /**
  * Created by Santosh on 9/19/2015.
  */
-public class ND_NoteDetailScreen extends Activity {
+public class ND_NoteDetailScreen extends ActionBarActivity {
 
     private boolean savePressed = false;
     private int backPressCount;
@@ -48,9 +48,15 @@ public class ND_NoteDetailScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nd_notedetailscreen_layout);
         backPressCount=1;
+
         setTitle("Add/Edit Notes");
+
         mainText = (EditText) findViewById(R.id.MainText);
+        mainText.setHorizontallyScrolling(false);
+        mainText.setMaxLines(500);
         titleText = (EditText) findViewById(R.id.TitleText);
+
+
         maxTitleLength = (TextView) findViewById(R.id.maxTitleLength);
 
         mainText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -282,7 +288,7 @@ public class ND_NoteDetailScreen extends Activity {
                     ND_ToastMessage.message(getApplicationContext(), "Nothing to Share");
                 }
                 break;
-            case R.id.newReminder:
+             /*case R.id.newReminder:
                 if((titleText.length()==0) && (mainText.length()==0)){
 
                     ND_ToastMessage.message(getApplicationContext(), "Please Create a Note first");
@@ -293,17 +299,17 @@ public class ND_NoteDetailScreen extends Activity {
 
                 else{
 
-                 /*   DateandTimeDialog dtd= new DateandTimeDialog();
+                   DateandTimeDialog dtd= new DateandTimeDialog();
                     FragmentManager manger = getFragmentManager();
                     dtd.show(manger, "Set Date And Time Dialog");
 
                     // start calendar
-                   */
+
                 }
 
 
                 //showRemindericon= false;
-                break;
+                break;  */
         }
 
 
