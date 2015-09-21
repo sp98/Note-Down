@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
     >
 
 
@@ -12,11 +12,12 @@
         android:text="Cancel"
         android:id="@+id/Cancel"
         android:background="@android:color/transparent"
-        android:layout_marginRight="29dp"
-        android:layout_marginEnd="29dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginEnd="37dp"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/OK"
-        android:layout_toStartOf="@+id/OK" />
+        android:layout_toStartOf="@+id/OK"
+        android:layout_marginTop="32dp" />
 
 
     <Button
@@ -26,9 +27,19 @@
         android:text="OK"
         android:id="@+id/OK"
         android:background="@android:color/transparent"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/Cancel"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"></Button>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/dialog_message"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

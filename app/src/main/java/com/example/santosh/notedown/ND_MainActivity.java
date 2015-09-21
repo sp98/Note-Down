@@ -13,7 +13,9 @@ import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -38,6 +40,11 @@ import java.util.List;
 public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragment.Communicator{
 
    // Data Storage options for different columns in the data base
+    public int usageCount;
+    public static final int  DEFAULT_USAGE_COUNT= 0;
+    public boolean isMessageDismisd;
+
+    SharedPreferences shared_prefs;
     public List<String> title = new ArrayList<>();
     public List<String> description = new ArrayList<>();
     public List<String> time = new ArrayList<>();
@@ -62,6 +69,11 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
     private boolean confirmation;
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +82,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
 
         setTitle("Note Down");  // set title of the Activity
+
         //Initialization
         c = getApplicationContext();
         customlistview = (ListView) findViewById(R.id.mylistView);
@@ -81,6 +94,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
         loadSavedData(title, description, time);  //loads the data into the custom list view on the main activity
 
+        //Using Shared Preferences
 
 
         //Handling click on ListView: Takes the user to detailScreen activity when a row in the List view is clicked. Data is also transferred in Bundle
@@ -90,7 +104,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
                 // Message.message(getApplicationContext(), "Item at" +titles[position]+ "was clicked");
                 String titleText = title.get(position);
 
-               // ND_ToastMessage.message(getApplicationContext(),description.get(position).toString());
+                // ND_ToastMessage.message(getApplicationContext(),description.get(position).toString());
                 //String descText = dataBaseApdater.retriveSingleText(titleText);
 
                 String descText = description.get(position).toString();
@@ -101,6 +115,35 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
                 startActivity(i);
             }
         });
+
+
+       // Showing Welcome Dialog if Usage Count is 0
+          shared_prefs = PreferenceManager.getDefaultSharedPreferences(this);
+         //usageCount=shared_prefs.getInt("counterValue", 0);
+          isMessageDismisd = shared_prefs.getBoolean("currentDismissedState" , false);
+
+        if (title.size()==0){
+
+            if(isMessageDismisd==false){
+
+                showTheDialog(4);
+            }
+
+            //Show Dialoge Fragment for Welcome Message over here.
+
+
+           /* usageCount++;
+            SharedPreferences.Editor editor = shared_prefs.edit();
+            editor.putBoolean("counterValue", );
+            editor.commit(); */
+
+        }
+
+
+
+
+
+
 
 
 
@@ -350,6 +393,16 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
     }
 
+    @Override
+    public void welcomeMessageState(boolean b) {
+
+        isMessageDismisd=b;
+        SharedPreferences.Editor editor = shared_prefs.edit();
+        editor.putBoolean("currentDismissedState", isMessageDismisd );
+        editor.commit();
+
+
+    }
 
 
     // Back button press behavior on the main activity.@Override

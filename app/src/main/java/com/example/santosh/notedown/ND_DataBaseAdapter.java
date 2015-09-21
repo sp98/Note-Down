@@ -309,7 +309,7 @@ public class ND_DataBaseAdapter {
 
         private static final String DATABASE_NAME = "Mydatbase1";
         private static final String TABLE_NAME = "MyTable1";
-        private static final int  DB_VERSION = 43;
+        private static final int  DB_VERSION = 1;
         private static final String UID = "_id";
         private static final String TITLE="Title";
         private static final String DESCRIPTION="Description";
