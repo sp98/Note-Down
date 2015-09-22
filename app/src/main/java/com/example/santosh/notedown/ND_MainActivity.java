@@ -14,11 +14,12 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.ActionMode;
 import android.view.KeyEvent;
@@ -40,8 +41,6 @@ import java.util.List;
 public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragment.Communicator{
 
    // Data Storage options for different columns in the data base
-    public int usageCount;
-    public static final int  DEFAULT_USAGE_COUNT= 0;
     public boolean isMessageDismisd;
 
     SharedPreferences shared_prefs;
@@ -94,19 +93,12 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
         loadSavedData(title, description, time);  //loads the data into the custom list view on the main activity
 
-        //Using Shared Preferences
-
-
         //Handling click on ListView: Takes the user to detailScreen activity when a row in the List view is clicked. Data is also transferred in Bundle
         customlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {   // here position is the row number on which the user has clicked.
-                // Message.message(getApplicationContext(), "Item at" +titles[position]+ "was clicked");
+
                 String titleText = title.get(position);
-
-                // ND_ToastMessage.message(getApplicationContext(),description.get(position).toString());
-                //String descText = dataBaseApdater.retriveSingleText(titleText);
-
                 String descText = description.get(position).toString();
 
                 Intent i = new Intent(getApplicationContext(), ND_NoteDetailScreen.class);
@@ -117,35 +109,17 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
         });
 
 
-       // Showing Welcome Dialog if Usage Count is 0
+         // Retriving the value of isMessageDismissed from Shared Prefs folder.
           shared_prefs = PreferenceManager.getDefaultSharedPreferences(this);
-         //usageCount=shared_prefs.getInt("counterValue", 0);
           isMessageDismisd = shared_prefs.getBoolean("currentDismissedState" , false);
 
+        // The Welcome message dialog will only be shown if there are no notes added and if the user has not dismissed the Welcome Dailog
         if (title.size()==0){
-
             if(isMessageDismisd==false){
-
                 showTheDialog(4);
             }
 
-            //Show Dialoge Fragment for Welcome Message over here.
-
-
-           /* usageCount++;
-            SharedPreferences.Editor editor = shared_prefs.edit();
-            editor.putBoolean("counterValue", );
-            editor.commit(); */
-
         }
-
-
-
-
-
-
-
-
 
 
 
@@ -191,10 +165,8 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             MenuInflater inflator = mode.getMenuInflater();
             inflator.inflate(R.menu.nd_menu_multipleselection, menu);
-
             return true;
         }
-
 
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
@@ -204,8 +176,6 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
         // Behavior when delete and share icons are clicked on the CAB
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-
-
             switch (item.getItemId()) {
                 case R.id.delete:
                     singleDeleteMode = 1;
@@ -248,8 +218,6 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 }
 
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -290,9 +258,6 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
                 int exit = 3;
                 showTheDialog(exit);
                 return true;
-
-
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -309,10 +274,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
     }
 
 
-
     public void loadSavedData(List title, List description, List time){
-
-
         timeStamp = time;
         List<String> formatedTime = new ArrayList<>();
 
@@ -324,14 +286,10 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
-
         }
-
 
         ND_CustomListViewAdapter customListViewAdapter = new ND_CustomListViewAdapter(this, title, description, formatedTime);
         customlistview.setAdapter(customListViewAdapter);
-
 
     }
 
@@ -339,6 +297,10 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
     // invoking the Dialog Fragment when Delete All or CAB Delete options are clicked.
     public void showTheDialog(int myMode) {
         int theMode = myMode;
+
+        if(theMode==4){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+        }
         FragmentManager manager = getFragmentManager();
         ND_DialogFragment dadaptr = new ND_DialogFragment();
         Bundle b = new Bundle(myMode);
@@ -347,6 +309,9 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
         //dadaptr.setStyle(DialogFragment.STYLE_NORMAL, 0);
         dadaptr.show(manager, "My Dialoge");
 
+        if(myMode==4){
+           // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }
 
     }
 
@@ -400,8 +365,6 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
         SharedPreferences.Editor editor = shared_prefs.edit();
         editor.putBoolean("currentDismissedState", isMessageDismisd );
         editor.commit();
-
-
     }
 
 
@@ -411,9 +374,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
             if(backButtonCount == 2)
             {
                 exitActivity();
-
             }
-
             else
             {
                 ND_ToastMessage.message(getApplicationContext(), "Press Again to Exit.");

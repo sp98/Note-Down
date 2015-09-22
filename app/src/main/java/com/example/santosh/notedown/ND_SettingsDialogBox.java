@@ -19,6 +19,23 @@ public class ND_SettingsDialogBox  extends DialogFragment{
 
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Light);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        int width = 400;
+        int height = 450;
+
+        if(getDialog()!=null){
+            getDialog().getWindow().setLayout(width, height);
+        }
+    }
+
+    @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.nd_settingsdialogfragment_layout, null);

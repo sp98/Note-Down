@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_width="match_parent" android:layout_height="match_parent"
     >
 
 
@@ -12,12 +12,13 @@
         android:text="Cancel"
         android:id="@+id/Cancel"
         android:background="@android:color/transparent"
-        android:layout_marginRight="37dp"
-        android:layout_marginEnd="37dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/dialog_message"
         android:layout_toLeftOf="@+id/OK"
-        android:layout_toStartOf="@+id/OK"
-        android:layout_marginTop="32dp" />
+        android:layout_toStartOf="@+id/OK" />
 
 
     <Button
@@ -26,8 +27,11 @@
         android:layout_height="wrap_content"
         android:text="OK"
         android:id="@+id/OK"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/Cancel"
+        android:layout_below="@+id/dialog_message"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"></Button>
 
@@ -36,6 +40,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
         android:id="@+id/dialog_message"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
