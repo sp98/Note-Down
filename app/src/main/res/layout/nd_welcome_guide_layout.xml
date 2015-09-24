@@ -5,6 +5,7 @@
     >
 
     <TextView
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -15,6 +16,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -24,6 +26,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -34,6 +37,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:fontFamily="sans-serif-condensed"
         android:gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,16 +51,19 @@
         android:layout_marginTop="25dp" />
 
     <Button
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dimiss"
         android:id="@+id/dismiss"
-        android:layout_marginTop="44dp"
         android:layout_below="@+id/welcome_message_4"
         android:layout_alignLeft="@+id/welcome_message_1"
         android:layout_alignStart="@+id/welcome_message_1" />
 
     <Button
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Got it"
@@ -66,14 +73,15 @@
         android:layout_alignEnd="@+id/welcome_message_4" />
 
     <Button
-        android:layout_marginTop="60dp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="38dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ADD"
         android:id="@+id/add_button_on_welcome_message"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/welcome_message_1"
-        android:layout_toEndOf="@+id/welcome_message_1" />
+        android:layout_alignRight="@+id/welcome_message_4"
+        android:layout_alignEnd="@+id/welcome_message_4" />
 
 
 </RelativeLayout>

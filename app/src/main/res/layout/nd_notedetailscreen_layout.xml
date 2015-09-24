@@ -12,7 +12,7 @@
         android:hint=" Start Typing..."
         android:padding="7dp"
         android:gravity= "top|left"
-        android:fontFamily="Arial"
+        android:fontFamily="sans-serif-condensed"
         android:background="@drawable/edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +30,7 @@
     <EditText
 
         android:gravity= "top|left"
-        android:fontFamily="Arial"
+        android:fontFamily="sans-serif-condensed"
         android:background="@drawable/edit_text"
         android:layout_width="match_parent"
         android:layout_height="36dp"
@@ -49,8 +49,8 @@
         />
 
     <Button
+        android:fontFamily="sans-serif-condensed"
         android:onClick="savingNote"
-        android:fontFamily="Arial"
         android:background="@drawable/edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,11 +62,11 @@
 
 
     <TextView
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Max 20"
-        android:fontFamily="Arial"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:id="@+id/maxTitleLength"
