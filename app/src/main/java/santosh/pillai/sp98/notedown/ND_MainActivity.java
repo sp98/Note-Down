@@ -9,6 +9,7 @@
 
 package santosh.pillai.sp98.notedown;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Context;
@@ -31,7 +32,6 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -377,7 +377,7 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if(backButtonCount == 2)
             {
-                exitActivity();
+                exitActivity(this);
             }
             else
             {
@@ -396,11 +396,11 @@ public class ND_MainActivity extends ActionBarActivity implements ND_DialogFragm
 
     }
 
-    public void exitActivity(){
+    public void exitActivity(Activity activity){
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        activity.startActivity(intent);
         finish();
     }
 }

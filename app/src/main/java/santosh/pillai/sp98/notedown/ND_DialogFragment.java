@@ -11,8 +11,10 @@ package santosh.pillai.sp98.notedown;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +107,20 @@ public class ND_DialogFragment extends DialogFragment {
         dialog_message = (TextView) v.findViewById(R.id.dialog_message);
 
 
+       //Dismissing the Welcome pop up dialog fragment on clicking the back button
+        getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                if ((keyCode ==  android.view.KeyEvent.KEYCODE_BACK)){
+                    dismiss();
+                    return true;
+                }
+                else
+                return false;
+            }
+        });
+
         // Setting the text message and title on the diaglog fragment based on the current Mode.
         switch(myMode){
             case 1:
@@ -169,13 +185,15 @@ public class ND_DialogFragment extends DialogFragment {
 
     }
 
+
+
     // Determines the user action on the Dialog fragments on Mode 1, 2 and 3
-    public void onClickOperations(){
+    public void onClickOperations() {
 
         byes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(myMode==3){
+                if (myMode == 3) {
                     dismiss();
                     ND_MainActivity ma = new ND_MainActivity();
                     Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -195,7 +213,7 @@ public class ND_DialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-                if(myMode==3){
+                if (myMode == 3) {
                     dismiss();
                 }
 
