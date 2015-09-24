@@ -59,7 +59,7 @@ public class ND_DialogFragment extends DialogFragment {
             setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Light);
         }
         else{
-            setStyle(STYLE_NORMAL, android.R.style.Theme_DeviceDefault_NoActionBar_TranslucentDecor); // dark screen on the whole scree
+            setStyle(STYLE_NORMAL, R.style.Welcome); // dark screen on the whole scree
 
         }
 
@@ -107,7 +107,11 @@ public class ND_DialogFragment extends DialogFragment {
         dialog_message = (TextView) v.findViewById(R.id.dialog_message);
 
 
+<<<<<<< HEAD
        //Dismissing the Welcome pop up dialog fragment on clicking the back button
+=======
+        //Dismissing the Welcome pop up dialog fragment on clicking the back button
+>>>>>>> master
         getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
@@ -117,9 +121,16 @@ public class ND_DialogFragment extends DialogFragment {
                     return true;
                 }
                 else
+<<<<<<< HEAD
                 return false;
             }
         });
+=======
+                    return false;
+            }
+        });
+        
+>>>>>>> master
 
         // Setting the text message and title on the diaglog fragment based on the current Mode.
         switch(myMode){
